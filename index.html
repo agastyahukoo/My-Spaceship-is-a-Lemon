@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Spaceship is a Lemon</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <h1>My Spaceship is a Lemon</h1>
+        <button id="start-game">Start Game</button>
+        <button id="settings-button">Settings</button>
+    </div>
+
+    <div id="settings" style="display: none;">
+        <h2>Settings</h2>
+        <label for="volume">Background Music Volume:</label>
+        <input type="range" id="volume" name="volume" min="0" max="100">
+        <br>
+        <label for="protagonist">Choose Protagonist:</label>
+        <select id="protagonist" name="protagonist">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <br>
+        <button id="save-settings">Save Settings</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
