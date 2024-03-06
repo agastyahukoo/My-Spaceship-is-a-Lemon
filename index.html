@@ -2,32 +2,113 @@
 <html>
 <head>
     <title>My Spaceship is a Lemon</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: url('your-background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 20px;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            background-color: #f2f2f2;
+            color: #000;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        #settings {
+            display: none;
+        }
+
+        label, select, input {
+            display: block;
+            margin: 10px auto;
+            font-size: 1.1em;
+        }
+
+        input[type="range"], input[type="text"] {
+            width: 50%;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div id="loading-screen">
-        <h1>My Spaceship is a Lemon</h1>
-        <button id="start-game">Start Game</button>
-        <button id="settings-button">Settings</button>
+    <div class="container">
+        <div id="loading-screen">
+            <h1>My Spaceship is a Lemon</h1>
+            <button id="start-game">Start Game</button>
+            <button id="settings-button">Settings</button>
+        </div>
+
+        <div id="settings">
+            <h2>Settings</h2>
+            <label for="volume">Background Music Volume:</label>
+            <input type="range" id="volume" name="volume" min="0" max="100">
+            <br>
+            <label for="protagonist">Choose Protagonist:</label>
+            <select id="protagonist" name="protagonist">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <br>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <br>
+            <button id="save-settings">Save Settings</button>
+        </div>
     </div>
 
-    <div id="settings" style="display: none;">
-        <h2>Settings</h2>
-        <label for="volume">Background Music Volume:</label>
-        <input type="range" id="volume" name="volume" min="0" max="100">
-        <br>
-        <label for="protagonist">Choose Protagonist:</label>
-        <select id="protagonist" name="protagonist">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-        <br>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
-        <br>
-        <button id="save-settings">Save Settings</button>
-    </div>
+    <script>
+        document.getElementById('settings-button').addEventListener('click', function() {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('settings').style.display = 'block';
+        });
 
-    <script src="script.js"></script>
+        document.getElementById('save-settings').addEventListener('click', function() {
+            var volume = document.getElementById('volume').value;
+            var protagonist = document.getElementById('protagonist').value;
+            var username = document.getElementById('username').value;
+
+            localStorage.setItem('volume', volume);
+            localStorage.setItem('protagonist', protagonist);
+            localStorage.setItem('username', username);
+
+            document.getElementById('settings').style.display = 'none';
+            document.getElementById('loading-screen').style.display = 'block';
+        });
+    </script>
 </body>
 </html>
